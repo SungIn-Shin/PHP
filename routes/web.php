@@ -16,5 +16,13 @@ Route::get('/', function () {
 });
 
 Route::get('/list', function () {
-    return model();
+    $boards = App\Board::all();
+
+    return $boards;
+});
+
+Route::get('/save/{title}', function ($title) {
+    $board = new App\Board;
+    $board->store($title);
+    return $title;
 });
