@@ -17,3 +17,7 @@ RUN apt-get update && apt-get install -y \
     && echo "xdebug.remote_host=192.168.0.159\n" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_port=9001\n" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.idekey=REMOTE\n" >> /usr/local/etc/php/conf.d/xdebug.ini
+
+RUN apt-get install -y zip unzip \
+    && php -r "readfile('https://getcomposer.org/installer');" | php -- --install-dir=/usr/local/bin/ \
+    && ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
