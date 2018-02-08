@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -28,11 +29,10 @@ Route::get('/save/{title}', function ($title) {
 });
 
 Route::get('name/{name}', function ($name) {
-    return view('yourname', ['name' => $name]);
+    return view('yourname', compact('name'));
+    //return view('yourname', ['name' => $name]);
+    //return view('yourname')->with('name', $name);
 });
 
-Route::get('name2/{name}', function ($name) {
-    return view('yourname')->with('name', $name);
-});
-
-Route::controller('name3/{name}', 'NameController@showName');
+Route::get('name3/{name}', 'NameController@showName');
+Route::get('list_board', 'BoardController@show');
