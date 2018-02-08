@@ -26,3 +26,13 @@ Route::get('/save/{title}', function ($title) {
     $board->store($title);
     return $title;
 });
+
+Route::get('name/{name}', function ($name) {
+    return view('yourname', ['name' => $name]);
+});
+
+Route::get('name2/{name}', function ($name) {
+    return view('yourname')->with('name', $name);
+});
+
+Route::controller('name3/{name}', 'NameController@showName');
