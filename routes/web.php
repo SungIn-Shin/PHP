@@ -35,4 +35,8 @@ Route::get('name/{name}', function ($name) {
 });
 
 Route::get('name3/{name}', 'NameController@showName');
-Route::get('list_board', 'BoardController@show');
+
+Route::get('list_board', 'BoardController@show')->name('board.list');
+Route::get('create_board', 'BoardController@create')->name('board.create');
+Route::post('store_board', 'BoardController@store')->name('board.store');
+    
