@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Allimtalk;
 use App\Board;
 use Illuminate\Http\Request;
+use Validator;
 
 class AllimtalkController extends Controller
 {
@@ -26,7 +28,9 @@ class AllimtalkController extends Controller
     }
 
     public function showAdminAllimtalkSetting() {
-        $allimtalks = Allimtalk::paginate(10);
+        $allimtalks = Allimtalk::paginate(1);
+        // 모든 Rows Select
+        //$allimtalks = Allimtalk::all();
 
         //return view('list_board', array('boards' => $boards));
         //for pagination
@@ -42,9 +46,10 @@ class AllimtalkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function showAdminAllimtalkCreate()
     {
         //
+        return view('admin.allimtalk.create');
     }
 
     /**
@@ -55,7 +60,31 @@ class AllimtalkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'call_from' => array( 'required', 
+                                  'regex:/^\d{3}-\d{3,4}-\d{4}$/', 
+                                  'max:13'),
+            'call_to'   => array( 'required', 
+                                  'regex:/^\d{3}-\d{3,4}-\d{4}$/', 
+                                  'max:13'),
+            'sms_txt'   => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('admin/allimtalk/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        $alt = new Allimtalk;
+        $alt->req_date  = DB::raw('NOW()'); 
+        $alt->call_to   = $request->call_to;
+        $alt->call_from = $request->call_from;
+        $alt->sms_txt   = $request->sms_txt;
+        $alt->cur_state = 0;
+        $alt->msg_type  = 4;
+        $alt->save();
+        return redirect()->route('admin.allimtalk.setting');
     }
 
     /**
@@ -64,9 +93,11 @@ class AllimtalkController extends Controller
      * @param  \App\Allimtalk  $allimtalk
      * @return \Illuminate\Http\Response
      */
-    public function show(Allimtalk $allimtalk)
+    public function detail(Allimtalk $msg_seq)
     {
         //
+        $alt = Allimtalk::find($msg_seq);
+        return view('admin.allimtalk.detail', compact('alt'));
     }
 
     /**

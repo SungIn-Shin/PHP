@@ -26,6 +26,8 @@
     <!-- Morris Charts CSS -->
     <link href="{{ asset('vendor/morrisjs/morris.css') }}" rel="stylesheet">
 
+    <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+
     <!-- Custom Fonts -->
     <link href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 

@@ -13,9 +13,9 @@ class CreateMsgDataTable extends Migration
      */
     public function up()
     {
-        Schema::create('allimtalks', function (Blueprint $table) {
+        Schema::create('msg_data', function (Blueprint $table) {
             $table->integer     ('userdata')->nullable();
-            $table->increments  ('msg_data');
+            $table->increments  ('msg_seq');
             $table->integer     ('user_part')->nullable();
             $table->string      ('user_id', 20)->nullable();
             $table->integer     ('work_seq')->nullable();
@@ -40,8 +40,10 @@ class CreateMsgDataTable extends Migration
             $table->string      ('msg_id', 100)->nullable();
             $table->string      ('saeallseq', 30)->nullable();
             $table->char        ('deletedyn', 1)->default('N');
-            $table->char        ('push_code', 4)->nullable();            
+            $table->char        ('push_code', 4)->nullable();      
+            $table->timestamps();      
         });
+        
     }
 
     /**
@@ -51,6 +53,6 @@ class CreateMsgDataTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('allimtalks');
+        Schema::dropIfExists('msg_data');
     }
 }

@@ -52,8 +52,25 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => '/admin/allimtalk/'], function () {
     Route::get('usage','AllimtalkController@showAdminAllimtalkUsage')->name('admin.allimtalk.usage');
     Route::get('setting','AllimtalkController@showAdminAllimtalkSetting')->name('admin.allimtalk.setting');
+    Route::get('create', 'AllimtalkController@showAdminAllimtalkCreate')->name('admin.allimtalk.create');
+    Route::post('store', 'AllimtalkController@store')->name('admin.allimtalk.store'); 
+    Route::get('detail/{msg_seq}','AllimtalkController@detail')->name('admin.allimtalk.detail');
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Post 따라하기
 
 
 
