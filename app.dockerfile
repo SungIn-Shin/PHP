@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
     && echo "xdebug.remote_enable=1\n" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_autostart=1\n" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_connect_back=0\n" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_host=192.168.0.24\n" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.remote_host=192.168.0.20\n" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_port=9001\n" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.idekey=REMOTE\n" >> /usr/local/etc/php/conf.d/xdebug.ini
 
