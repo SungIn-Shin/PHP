@@ -4,7 +4,7 @@
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">등록화면</h1>
+            <h1 class="page-header">등록화면</h1> 
         </div>
         <!-- /.col-lg-12 -->
 
@@ -12,7 +12,7 @@
     <!-- /.row -->    
 
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-12">
             <form method="post" action="{{route('admin.allimtalk.store') }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group{{ $errors->has('call_from') ? ' has-error' : '' }}">
